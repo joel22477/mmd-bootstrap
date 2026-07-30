@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Match Fixture</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Inter, Arial, sans-serif;
+        }
+
+        body {
+            background: #0f1e1b;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .fixture-card {
+            width: 370px;
+            border-radius: 24px;
+            background: linear-gradient(135deg, #1a554b, #183c35);
+            color: #fff;
+            padding: 22px;
+            box-shadow:
+                0 18px 40px rgba(0, 0, 0, .35),
+                inset 0 1px 1px rgba(255, 255, 255, .08);
+        }
+
+        .top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+        }
+
+        .league {
+            font-size: 13px;
+            color: rgba(255, 255, 255, .75);
+            letter-spacing: .5px;
+        }
+
+        .status {
+            padding: 6px 12px;
+            border-radius: 50px;
+            background: rgba(255, 255, 255, .12);
+            backdrop-filter: blur(10px);
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .status:hover {
+            background: linear-gradient(rgba(0, 0, 0, 0.9), rgba(3, 63, 12, 0.4));
+            transition: ease 1.5s;
+            
+        }
+
+        .teams {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .team {
+            width: 120px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo {
+            width: 74px;
+            height: 74px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, .12);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, .08);
+        }
+
+        .logo img {
+            width: 54px;
+            height: 54px;
+            object-fit: contain;
+        }
+
+        .team-name {
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .center {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .time {
+            font-size: 30px;
+            font-weight: 700;
+        }
+
+        .vs {
+            color: rgba(255, 255, 255, .55);
+            font-size: 13px;
+            letter-spacing: 2px;
+        }
+
+        .bottom {
+            margin-top: 28px;
+            padding-top: 18px;
+            border-top: 1px solid rgba(255, 255, 255, .08);
+
+            display: flex;
+            justify-content: space-between;
+            color: rgba(255, 255, 255, .8);
+            font-size: 14px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="fixture-card">
+
+        <div class="top">
+            <div class="league">Premier League</div>
+            <div class="status">Upcoming</div>
+        </div>
+
+        <div class="teams">
+
+            <div class="team">
+                <div class="logo">
+                    <img src="https://upload.wikimedia.org/wikipedia/en/5/53/Arsenal_FC.svg" alt="">
+                </div>
+                <div class="team-name">Arsenal</div>
+            </div>
+
+            <div class="center">
+                <div class="time">20:45</div>
+                <div class="vs">VS</div>
+            </div>
+
+            <div class="team">
+                <div class="logo">
+                    <img src="https://upload.wikimedia.org/wikipedia/en/e/eb/Manchester_City_FC_badge.svg" alt="">
+                </div>
+                <div class="team-name">Man City</div>
+            </div>
+
+        </div>
+
+        <div class="bottom">
+            <span>📅 15 Aug 2026</span>
+            <span>🏟 Emirates Stadium</span>
+        </div>
+
+    </div>
+
+</body>
+
+</html>

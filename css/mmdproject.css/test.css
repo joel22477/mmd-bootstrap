@@ -1,0 +1,17 @@
+.navbar {
+    background-color: #1fd05f !important;
+
+    }
+
+    .navbar-brand { justify-self: center;
+    
+    }
+    .navbar-brand:hover {
+    color: white;
+    font-size: larger;
+    transition: ease 0.5s;
+    -webkit-transition: ease 0.5s;
+    -moz-transition: ease 0.5s;
+    -ms-transition: ease 0.5s;
+    -o-transition: ease 0.5s;
+    }

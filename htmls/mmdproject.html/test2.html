@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Football Game</title>
+    <style>
+        .mainbox {
+            width: 1000px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-direction: row;
+            gap: 1rem;
+            padding: 2rem;
+            margin: 1px solid black;
+            background-color: green;
+        }
+
+        .box1 {
+            flex-basis: 400px;
+            align-self: center;
+            justify-self: center;
+        }
+
+        .box {
+            width: 100px;
+            height: 100px;
+            border: 2px solid black;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: transform 0.2s;
+        }
+
+        .box:hover {
+            transform: scale(1.05);
+        }
+
+        .rightbox {
+            width: 500px;
+            display: flex;
+            gap: 2rem;
+            flex-direction: row-reverse;
+        }
+
+        .mainbox2 {
+            background-color: aqua;
+            width: 1000px;
+            height: 100px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .mb2 {
+            width: 50px;
+            border: 1px solid black;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .mb2-1 {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .smallermmd {
+            font-size: x-small;
+            text-align: center;
+        }
+
+        .mb2-3 {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .smallermehdi {
+            font-size: xx-small;
+            text-align: center;
+        }
+
+        .baba {
+            width: 2rem;
+            height: 2rem;
+            background-color: transparent;
+        }
+
+        .liver {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+        }
+
+        .pitch {
+            width: 1000px;
+            height: 400px;
+            background-color: #2a5f2a;
+            margin: 20px auto;
+            position: relative;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .goal-left, .goal-right {
+            width: 20px;
+            height: 150px;
+            background-color: #8B0000;
+            position: absolute;
+            top: 125px;
+            border-radius: 4px;
+        }
+
+        .goal-left {
+            left: 0;
+        }
+
+        .goal-right {
+            right: 0;
+        }
+
+        .ball {
+            width: 30px;
+            height: 30px;
+            background-color: #FFD700;
+            border-radius: 50%;
+            position: absolute;
+            left: 485px;
+            top: 185px;
+            cursor: pointer;
+            border: 2px solid #333;
+        }
+
+        .team {
+            display: flex;
+            justify-content: space-around;
+            margin: 20px 0;
+        }
+
+        .team-button {
+            padding: 12px 24px;
+            font-size: 16px;
+            border: none;
+            border-radius: 6px;
+            background-color: #3498db;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .team-button:hover {
+            background-color: #2980b9;
+        }
+
+        .team-button.selected {
+            background-color: #e74c3c;
+        }
+
+        .score-display {
+            text-align: center;
+            font-size: 24px;
+            margin: 20px;
+            font-weight: bold;
+        }
+
+        .message {
+            text-align: center;
+            margin: 10px;
+            font-size: 18px;
+            color: #333;
+        }
+
+        .controls {
+            text-align: center;
+            margin: 20px;
+        }
+
+        .control-button {
+            padding: 8px 16px;
+            margin: 0 5px;
+            border: none;
+            border-radius: 4px;
+            background-color: #95a5a6;
+            color: white;
+            cursor: pointer;
+        }
+
+        .control-button:hover {
+            background-color: #7f8c8d;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="score-display">Team A: 0 - Team B: 0</div>
+    <div class="message">Select a team and control the ball to score!</div>
+
+    <div class="mainbox">
+        <div class="box box1" id="teamScore">Team Score: 0</div>
+        <div class="rightbox">
+            <div class="box box2" id="opponentScore">Opponent Score: 0</div>
+            <div class="box box3" id="gameStatus">Ready</div>
+            <div class="box box4" id="time">Time: 60</div>
+        </div>
+    </div>
+
+    <div class="team">
+        <button class="team-button" onclick="selectTeam('A')">Team A</button>
+        <button class="team-button" onclick="selectTeam('B')">Team B</button>
+    </div>
+
+    <div class="pitch">
+        <div class="goal-left"></div>
+        <div class="goal-right"></div>
+        <div class="ball" id="ball" onmousedown="startMove(event)" ontouchstart="startMove(event)"></div>
+    </div>
+
+    <div class="controls">
+        <button class="control-button" onclick="kickBall()">Kick Ball</button>
+        <button class="control-button" onclick="resetGame()">Reset Game</button>
+    </div>
+
+    <div class="message" id="gameMessage">Select a team to start</div>
+
+    <div class="mainbox2">
+        <div class="mb2 mb2-1">
+            <div class="baba ">
+                <img src="/css/mmdproject.css/mmdphotos/photo_2026-07-31_01-52-50.jpg" alt="liver" class="liver">
+            </div>
+            <p class="smallermmd">smaller mmd</p>
+        </div>
+        <div class="mb2 mb2-2">2</div>
+        <div class="mb2 mb2-3">
+            <p>mehdi</p>
+            <p class="smallermehdi">smaller mehdi</p>
+        </div>
+    </div>
+
+    <script>
+        let gameState = {
+            teamA: 0,
+            teamB: 0,
+            currentTeam: null,
+            ball: { x: 485, y: 185, vx: 0, vy: 0, isMoving: false },
+            gameActive: false,
+            timer: 60,
+            timerInterval: null
+        };
+
+        function selectTeam(team) {
+            gameState.currentTeam = team;
+            gameState.gameActive = true;
+            updateTeamButtons();
+            updateGameMessage(`Team ${team} selected! Move the ball to shoot.`);
+            startTimer();
+        }
+
+        function updateTeamButtons() {
+            const buttons = document.querySelectorAll('.team-button');
+            buttons.forEach(btn => {
+                if (btn.textContent.includes(gameState.currentTeam)) {
+                    btn.classList.add('selected');
+                } else {
+                    btn.classList.remove('selected');
+                }
+            });
+        }
+
+        function startMove(event) {
+            if (!gameState.gameActive || !gameState.currentTeam) return;
+
+            event.preventDefault();
+            gameState.ball.isMoving = true;
+
+            const pitch = document.querySelector('.pitch');
+            const rect = pitch.getBoundingClientRect();
+
+            function moveBall(clientX, clientY) {
+                if (!gameState.ball.isMoving) return;
+
+                const newX = clientX - rect.left - 15;
+                const newY = clientY - rect.top - 15;
+
+                if (newX >= 15 && newX <= 985 && newY >= 15 && newY <= 385) {
+                    gameState.ball.x = Math.max(15, Math.min(newX, 985));
+                    gameState.ball.y = Math.max(15, Math.min(newY, 385));
+                    const ballElement = document.getElementById('ball');
+                    ballElement.style.left = gameState.ball.x + 'px';
+                    ballElement.style.top = gameState.ball.y + 'px';
+                }
+            }
+
+            function onMouseMove(e) {
+                moveBall(e.clientX, e.clientY);
+            }
+
+            function onTouchMove(e) {
+                if (e.touches && e.touches.length > 0) {
+                    moveBall(e.touches[0].clientX, e.touches[0].clientY);
+                }
+            }
+
+            document.addEventListener('mousemove', onMouseMove);
+            document.addEventListener('touchmove', onTouchMove, { passive: false });
+
+            document.addEventListener('mouseup', () => {
+                gameState.ball.isMoving = false;
+                document.removeEventListener('mousemove', onMouseMove);
+                document.removeEventListener('touchmove', onTouchMove);
+                checkGoal();
+            });
+
+            document.addEventListener('touchend', () => {
+                gameState.ball.isMoving = false;
+                document.removeEventListener('mousemove', onMouseMove);
+                document.removeEventListener('touchmove', onTouchMove);
+                checkGoal();
+            });
+        }
+
+        function kickBall() {
+            if (!gameState.gameActive || !gameState.currentTeam) return;
+
+            const randomAngle = (Math.random() - 0.5) * Math.PI / 3;
+            const speed = 5 + Math.random() * 5;
+            gameState.ball.vx = Math.cos(randomAngle) * speed;
+            gameState.ball.vy = Math.sin(randomAngle) * speed;
+            gameState.ball.isMoving = true;
+
+            function autoMove() {
+                if (!gameState.gameActive) return;
+
+                gameState.ball.x += gameState.ball.vx;
+                gameState.ball.y += gameState.vy;
+
+                const ballElement = document.getElementById('ball');
+                ballElement.style.left = gameState.ball.x + 'px';
+                ballElement.style.top = gameState.ball.y + 'px';
+
+                if (gameState.ball.y <= 15 || gameState.ball.y >= 385) {
+                    gameState.ball.vy *= -0.8;
+                }
+
+                if (gameState.ball.x <= 15 || gameState.ball.x >= 985) {
+                    gameState.ball.vx *= -0.8;
+                }
+
+                checkGoal();
+
+                gameState.ball.isMoving = (
+                    gameState.ball.vx !== 0 || gameState.ball.vy !== 0
+                );
+
+                if (gameState.gameActive && gameState.ball.isMoving) {
+                    requestAnimationFrame(autoMove);
+                }
+            }
+
+            autoMove();
+        }
+
+        function checkGoal() {
+            if (gameState.ball.x < 20 && gameState.currentTeam === 'B') {
+                gameState.teamA++;
+                updateScore();
+                gameState.ball.x = 485;
+                gameState.ball.y = 185;
+                gameState.ball.vx = 0;
+                gameState.ball.vy = 0;
+                updateGameMessage(`Goal! Team B scored! Team A: ${gameState.teamA} - Team B: ${gameState.teamB}`);
+
+                if (gameState.teamA >= 5 || gameState.teamB >= 5) {
+                    endGame();
+                }
+            }
+            else if (gameState.ball.x > 970 && gameState.currentTeam === 'A') {
+                gameState.teamB++;
+                updateScore();
+                gameState.ball.x = 485;
+                gameState.ball.y = 185;
+                gameState.ball.vx = 0;
+                gameState.ball.vy = 0;
+                updateGameMessage(`Goal! Team A scored! Team A: ${gameState.teamA} - Team B: ${gameState.teamB}`);
+
+                if (gameState.teamA >= 5 || gameState.teamB >= 5) {
+                    endGame();
+                }
+            }
+        }
+
+        function updateScore() {
+            document.getElementById('teamScore').textContent = `Team Score: ${gameState.teamA}`;
+            document.getElementById('opponentScore').textContent = `Opponent Score: ${gameState.teamB}`;
+            document.querySelector('.score-display').textContent =
+                `Team A: ${gameState.teamA} - Team B: ${gameState.teamB}`;
+        }
+
+        function updateGameMessage(msg) {
+            document.getElementById('gameMessage').textContent = msg;
+            document.getElementById('gameStatus').textContent = msg.substring(0, Math.min(msg.length, 15));
+        }
+
+        function startTimer() {
+            gameState.timer = 60;
+            updateTimeDisplay();
+
+            if (gameState.timerInterval) clearInterval(gameState.timerInterval);
+
+            gameState.timerInterval = setInterval(() => {
+                gameState.timer--;
+                updateTimeDisplay();
+
+                if (gameState.timer <= 0) {
+                    clearInterval(gameState.timerInterval);
+                    endGame();
+                }
+            }, 1000);
+        }
+
+        function updateTimeDisplay() {
+            document.getElementById('time').textContent = `Time: ${gameState.timer}`;
+        }
+
+        function resetGame() {
+            gameState.teamA = 0;
+            gameState.teamB = 0;
+            gameState.currentTeam = null;
+            gameState.gameActive = false;
+            gameState.ball = { x: 485, y: 185, vx: 0, vy: 0, isMoving: false };
+
+            if (gameState.timerInterval) {
+                clearInterval(gameState.timerInterval);
+                gameState.timerInterval = null;
+            }
+
+            updateScore();
+            updateGameMessage('Select a team to start');
+            updateTeamButtons();
+            document.getElementById('ball').style.left = '485px';
+            document.getElementById('ball').style.top = '185px';
+        }
+
+        function endGame() {
+            gameState.gameActive = false;
+            updateGameMessage(`Game Over! Final Score: Team A ${gameState.teamA} - Team B ${gameState.teamB}`);
+            document.getElementById('gameStatus').textContent = 'Game Over';
+        }
+
+        resetGame();
+    </script>
+</body>
+
+</html>

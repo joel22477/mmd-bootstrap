@@ -1,0 +1,29 @@
+:root {
+    --color_7f2121: #7f2121
+}
+
+
+
+
+
+.bg-succes {
+    --bs-bg-opacity: 1;
+    background-color: rgba(
+        var(--bs-success-rgb),
+        var(--bs-bg-opacity 5)
+    ) !important;
+    }
+h1 {
+    color: white !important;
+    padding: 4rem;
+}
+.box{
+    height: 400px;
+    width: 500px;
+    border: 1px solid black;
+}
+.bg-brown{
+    background-color: #7f2121;
+}
+
+
